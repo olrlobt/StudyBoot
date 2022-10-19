@@ -24,7 +24,7 @@ public class Pager {
 	
 	
 	public void getRowNum() throws Exception{
-		startRow = (getPage()-1)*getPerPage()+1;
+		startRow = (getPage()-1)*getPerPage();
 		lastRow = getPage()*getPerPage();
 		
 	}
