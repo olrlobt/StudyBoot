@@ -1,11 +1,17 @@
 package com.iu.home.board.qna;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.home.util.FileManager;
 import com.iu.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 public class QnaService {
 
 	@Autowired
+	private FileManager fileManager;
+	
+	@Autowired
 	private QnaMapper qnaMapper;
 	
+	@Value("${app.upload.qna}")
+	private String path;
 	
 	public Long getCount() throws Exception{
 		
@@ -38,10 +49,37 @@ public class QnaService {
 	
 	public int addList(QnaVO qnaVO)  throws Exception{
 		
+		
+		
+		int result = qnaMapper.addList(qnaVO);
+		
+		
+		File file = new File(path);
+		
+		if(!file.exists()) {
+			
+			boolean check=file.mkdirs();
+			
+		}
+		
+		
+		
+		
 		for(MultipartFile f: qnaVO.getFiles()) {
 			
 			if(!f.isEmpty()) {
-				log.info("f {}",f.getOriginalFilename());
+				
+				String fileName=fileManager.saveFile(f, path);
+				
+				QnaFileVO qnaFileVO = new QnaFileVO();
+				
+				qnaFileVO.setFileName(fileName);
+				qnaFileVO.setOriName(f.getOriginalFilename());
+				qnaFileVO.setNum(qnaVO.getNum());
+				
+				qnaMapper.addFile(qnaFileVO);
+				
+				
 			}
 			
 		}
@@ -49,7 +87,15 @@ public class QnaService {
 		
 		
 		
-		return 1;
+		return result;
 	}
 	
+	
+	public QnaVO getDetail(QnaVO qnaVO) throws Exception{
+		
+		
+		
+		
+		return qnaMapper.getDetail(qnaVO);
+	}
 }

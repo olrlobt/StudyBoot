@@ -10,7 +10,7 @@
 <c:import url="../temp/boot.jsp"></c:import>
 </head>
 <body>
-
+<section class="container-fluid col-lg-8 mt-5">
 
 	<h1>list page</h1>
 	
@@ -30,7 +30,7 @@
   	
   	 	<tr>
 	      <th scope="row">${ar.num }</th>
-	      <td>${ar.title }</td>
+	      <td><a href="./detail?num=${ar.num}">${ar.title }</a></td>
 	      <td>${ar.contents }</td>
 	      <td>${ar.writer }</td>
 	    </tr>
@@ -47,6 +47,8 @@
 	
 	<a href="./add">글을 쓰자</a>
 	
+	
+</section>
 	
 	<script type="text/javascript">
 	let result = '${param.result}'
