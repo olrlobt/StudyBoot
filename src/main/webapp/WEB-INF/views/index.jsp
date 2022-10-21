@@ -15,5 +15,10 @@
 	
 	<img alt="" src="/images/구디 정면.png">
 	<a href="./qna/list">QNA</a>
+	<img src="/file/qna/83219722-0c1e-4acc-9198-b1caf4d6dcda_한글아이유.jpg">
+	<img src="/file/notice/iu4.jpg">
+	
+	<a href="/fileDown/qna?fileNum=2">qna</a>	
+	<a href="/fileDown/notice?fileNum=2">notice</a>	
 </body>
 </html>
