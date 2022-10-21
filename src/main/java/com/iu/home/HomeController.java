@@ -19,6 +19,9 @@ public class HomeController {
 	@Value("${hi}")
 	private String message;
 	
+	@Value("${my.default}")
+	private String app;
+	
 	@Autowired
 	private QnaMapper qnaMapper;
 	
@@ -27,10 +30,11 @@ public class HomeController {
 	
 	
 	@GetMapping("/")
-	
 	public String home() throws Exception {
 		
 		
+		log.info("==============");
+		log.info("app {}=",app);
 	
 		
 		
