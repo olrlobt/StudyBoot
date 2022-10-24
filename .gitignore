@@ -127,7 +127,8 @@ local.properties
 hs_err_pid*
 replay_pid*
 
-
+#my file
+application-prod.properties
 
 ### Windows ###
 # Windows thumbnail cache files
