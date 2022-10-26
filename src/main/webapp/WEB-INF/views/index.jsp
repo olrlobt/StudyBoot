@@ -20,5 +20,10 @@
 	
 	<a href="/fileDown/qna?fileNum=2">qna</a>	
 	<a href="/fileDown/notice?fileNum=2">notice</a>	
+	<c:if test="${empty member }"><a href="/member/login">LOGIN</a>	</c:if>
+	<c:if test="${not empty member }"><a href="/member/logout">LOGOUT</a></c:if>
+	<a href="/member/join">JOIN</a>	
+	
+	
 </body>
 </html>

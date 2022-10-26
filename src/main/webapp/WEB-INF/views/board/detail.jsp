@@ -42,7 +42,9 @@
     <tr>
     <th>파일</th>
 	     <c:forEach items="${qna.qnaFileVOs }" var="file">
-			 <td>${file.fileName }</td>
+	     
+	     	<td><img  src="/file/qna/${file.fileName }"></td>
+			 <td><a href="/fileDown/qna?fileNum=${file.fileNum}"> ${file.fileName }</a></td>
 		
 		
 		</c:forEach>

@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileManager extends AbstractView {
 
+	@Value("${app.download.base}")
+	private String base;
 	
 	// 다운 걸어주는 매쏘드
 	@Override
@@ -36,7 +39,7 @@ public class FileManager extends AbstractView {
 		log.info("=======================================");
 		log.info("FIle VO {}",fileVO );
 		
-		File file = new File("C:/result/upload/" +path,fileVO.getFileName());
+		File file = new File(base+path,fileVO.getFileName());
 		// 인코딩   // 파일 크기 설정
 		response.setCharacterEncoding("UTF-8");
 		response.setContentLengthLong(file.length());

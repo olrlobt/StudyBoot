@@ -59,9 +59,7 @@ public class QnaService {
 		File file = new File(path);
 		
 		if(!file.exists()) {
-			
 			boolean check=file.mkdirs();
-			
 		}
 		
 		
@@ -69,11 +67,9 @@ public class QnaService {
 		
 		for(MultipartFile f: qnaVO.getFiles()) {
 			
-			if(f.isEmpty()) {
-				
-				throw new Exception();
-				
-			}
+//			if(f.isEmpty()) {
+//				throw new Exception();
+//			}
 			
 			
 			
@@ -107,5 +103,13 @@ public class QnaService {
 		
 		
 		return qnaMapper.getDetail(qnaVO);
+	}
+	
+	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO) throws Exception{
+		
+		
+		
+		
+		return qnaMapper.getFileDetail(qnaFileVO);
 	}
 }

@@ -23,7 +23,7 @@
     	INSERT INTO QNAFILES VALUES (FILENUM,#{num},#{fileName},#{oriName})
     	</insert>
     	<select id="getDetail" parameterType="QnaVO"  resultMap="getDetailResult">
-    		SELECT Q.* , QF.FILENAME 
+    		SELECT Q.* , QF.FILENAME ,QF.FILENUM
 			FROM QNA Q
 				LEFT JOIN QNAFILES QF
 				ON Q.NUM = QF.NUM
@@ -41,13 +41,16 @@
     		<result column="DEPTH" property="depth"/>
     		<collection property="qnaFileVOs" javaType="List" ofType="QnaFileVO">
     			<result column="FILENAME" property="fileName"/>
-    		
+    			<result column="FILENUM" property="fileNum"/>
     		
     		</collection>
     	
     	
     	</resultMap>
     	
+    	<select id="getFileDetail" parameterType="QnaFileVO" resultType="QnaFileVO">
+	      SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
+	  	 </select>
     	
     	
     </mapper>
